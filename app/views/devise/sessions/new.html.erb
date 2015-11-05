@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-3 center-block no-float">
+    <h2><span class="glyphicon glyphicon-user"></span>  Iniciar Sesion</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {role: "form"}) do |f| %>
+
+    <%=devise_error_messages! %>
+    <% if session[:omniauth_errors] %>
+    <div class="flash">
+      <%= session[:omniauth_errors] %>
+    </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :login, "Login" %><br />
+      <%= f.text_field :login, autofocus: true, placeholder: "E-mail o Nombre de usuario", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, placeholder: "Constraseña", autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <% if devise_mapping.rememberable? -%>
+    <div>
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+    <% end -%>
+
+    <div class="text-center">
+      <%= f.submit "Log in", class: "btn btn-info" %>
+    </div>
+    <% end %>
+    <div class="text-center">
+      <%= render "devise/shared/links" %>
+    </div>    
+  </div>
+</div>
+
